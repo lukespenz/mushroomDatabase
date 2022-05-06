@@ -8,13 +8,52 @@
     <link rel="stylesheet" href="styles.css">
     <title>Add Mushroom</title>
 </head>
-<h1>Add Mushroom</h1>
+
 
 <body>
 
+    <h1>Add Mushroom</h1>
 
-    <footer><button id="addMushroom">Add Mushroom</button><button id="viewMushrooms">View Mushrooms</button></footer>
-    <script src="index.js"></script>
+    <!-- <form action="/"> //submit to sequelize -->
+    <form id="add-mushroom-form">
+        <label for="photo">Photo URL:</label>
+        <input type="text" id="photo"><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name"><br><br>
+        <label for="location">Location:</label>
+        <input type="text" id="location"><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date"><br><br>
+        <label for="who">Who:</label>
+        <input type="text" id="who"><br><br>
+
+        <label for="altitude">Altitude (ft):</label>
+        <input type="text" id="altitude"><br><br>
+        <label for="habitat">Habitat:</label>
+        <input type="text" id="habitat"><br><br>
+
+        <label for="substrate">Substrate:</label>
+        <input type="text" id="substrate"><br><br>
+        <label for="sporePrint">Spore print:</label>
+        <input type="text" id="spore_print"><br><br>
+
+        <label for="edible">Edible:</label>
+        <input type="text" id="edible"><br><br>
+        <label for="psychoactive">Psychoactive:</label>
+        <input type="text" id="psychoactive"><br><br>
+
+        <label for="notes">Notes:</label>
+        <input type="text" id="notes"><br><br>
+
+        <input type="submit" id="addButton" value="Add Mushroom">
+    </form>
+
+    <footer><button class="bottomnav" id="addMushroom">Add Mushroom</button><button class="bottomnav"
+            id="viewMushrooms">View Mushrooms</button></footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./index.js"></script>
 </body>
 
 </html>

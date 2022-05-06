@@ -2,10 +2,10 @@
   "name": "mushroomdatabase",
   "version": "1.0.0",
   "description": "",
-  "main": "deepDream.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon /server/index.js"
+    "start": "node server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,10 @@
     "axios": "^0.27.2",
     "cors": "^2.8.5",
     "deepai": "^1.0.21",
-    "express": "^4.18.1"
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.0"
   }
 }
