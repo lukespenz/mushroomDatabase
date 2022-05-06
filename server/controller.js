@@ -15,7 +15,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 module.exports = {
     addMushroom: (req, res) => {
         let { photo, name, location, date, who, altitude, habitat, substrate, sporePrint, edible, psychoactive, notes } = req.body
-
+        console.log('added mushroom')
         sequelize.query(`
         INSERT INTO mushrooms (image_url, mushroom_name, location, date, who, altitude, habitat, substrate, spore_print, edible, psychoactive, notes)
         VALUES (${photo}, ${name}, ${location}, ${date}, ${who}, ${altitude}, ${habitat}, ${substrate}, ${sporePrint}, ${edible}, ${psychoactive}, ${notes} )
@@ -27,10 +27,14 @@ module.exports = {
     },
     
     deleteMushroom: (req, res) => {
+        console.log('delete button clicked!')
         sequelize.query(`
         delete from mushrooms where mushroom_id='${req}'
         `)
-        res.status(200).send(dbRes[0])
+        .then(dbRes => {
+            res.status(200).send(dbRes[0])
+        })
+        .catch(err => console.log(err))
     },
 
     getMushroom: (req, res) => {
@@ -42,3 +46,4 @@ module.exports = {
         }).catch(err => console.log(err))
     }
 }
+

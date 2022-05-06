@@ -1,16 +1,17 @@
 const navAddButton = document.getElementById('addMushroom')
 const viewButton = document.getElementById('viewMushrooms')
-const addButton = document.getElementById('addButton')
+const addButton = document.getElementById('addButton') //clickable elements
+const deleteButton = document.getElementById('delete-button')
 
 const mushroomContainer = document.querySelector('#mushroom-container')
 
-const baseURL = `http://localhost:5503/api/public` //?
-const loginPage = baseURL + `/index`
+const baseURL = `http://localhost:5503/api/public` //localhost working for get requests but not on browser?
+const loginPage = `http://localhost:5503/api/public/index`
 const addPage = `http://localhost:5503/api/public/addMushroom`
-const viewPage = baseURL + `http://localhost:5503/api/public/viewMushrooms`
+const viewPage = `http://localhost:5503/api/public/viewMushrooms`
 
 const errCallback = err => console.log(err.response.data)
-const mushroomCallback = ({ data : mushrooms }) => displayMushrooms(mushrooms)
+// const mushroomCallback = ({ data : mushrooms }) => {console.log('you pressed a button!'), displayMushrooms(mushrooms)} //delete line?
 
 const navAdd = () => {
     console.log('clicked')
@@ -23,10 +24,12 @@ const viewMushrooms = () => {
     console.log('clicked')
 } //changes to view mushrooms page through nav bar
 
-const addMushroom = (body) => axios.post(`${viewPage}`, body).then(submitHandler).catch(errCallback)
-const deleteMushroom = (id) => axios.delete(`${viewPage}/${id}`).then(submitHandler).catch(errCallback)
+const addMushroom = (data) => axios.post(`${addPage}`, data).then(displayMushrooms).catch(errCallback) //?? not being invoked ??
+const deleteMushroom = (id) => axios.delete(`${viewPage}/${id}`).then(displayMushrooms).catch(errCallback)
 
-const submitHandler = () => {
+const submitHandler = (e) => {
+    e.preventDefault()
+
     const form = document.getElementById('add-mushroom-form')
     form.addEventListener('submit', submitHandler)
     
@@ -65,7 +68,6 @@ const submitHandler = () => {
 
 
 const displayMushrooms = () => {
-console.log('work!')
     axios.get(addPage)
     .then((res) => {
         for(let i = 0; i < res.data.length; i++){
@@ -79,24 +81,27 @@ console.log('work!')
        
         }
 
+
 const createMushroomCard = (mushroom) => {
 
         const mushroomCard = document.createElement('div')
         mushroomCard.classList.add('mushroom-card')
     
         mushroomCard.innerHTML = `
-        <img alt='mushroom-photo' src=${mushroom.photo} class="mushroom-photo"/>
-        <p class="mushroomname">${mushroom.name}</p>
+        <img alt='mushroom-photo' src=${mushroom.image_url} class="mushroom-photo"/>
+        <p class="mushroom-name">${mushroom.mushroom_name}</p>
         <p class="mushroom-location">${mushroom.location}</p>
         <p class="mushroom-date">${mushroom.date}</p>
-        <button onclick="deletemushroom(${mushroom.id})">delete</button>
+        <button id="delete-button" onclick="deletemushroom(${mushroom.id})">delete</button>
         `
         mushroomContainer.appendChild(mushroomCard)
     }
         
-        //addButton.addEventListener('submit', addMushroom) //adds mushroom when clicked
+        //addButton.addEventListener('submit', addMushroom) //when add mushroom button pressed it invokes addMushroom function
         viewButton.addEventListener('click', viewMushrooms) //footer button changes webpage
         navAddButton.addEventListener('click', navAdd) //footer button changes webpage
+        //deleteButton.addEventListener('click', deleteMushroom) //delete specific mushroom
+
         
 
 displayMushrooms();
