@@ -1,14 +1,14 @@
 const navAddButton = document.getElementById('addMushroom')
 const viewButton = document.getElementById('viewMushrooms')
 const addButton = document.getElementById('addButton') //clickable elements
-const deleteButton = document.getElementById('delete-button')
+
 
 const mushroomContainer = document.querySelector('#mushroom-container')
 
-const baseURL = `http://localhost:5503/api/public` //localhost working for get requests but not on browser?
-const loginPage = `http://localhost:5503/api/public/index`
-const addPage = `http://localhost:5503/api/public/addMushroom`
-const viewPage = `http://localhost:5503/api/public/viewMushrooms`
+const baseURL = `http://localhost:5504/api/public` //localhost working for get requests but not on browser?
+const loginPage = `http://localhost:5504/api/public/index`
+const addPage = `http://localhost:5504/api/public/addMushroom`
+const viewPage = `http://localhost:5504/api/public/viewMushrooms`
 
 const errCallback = err => console.log(err.response.data)
 // const mushroomCallback = ({ data : mushrooms }) => {console.log('you pressed a button!'), displayMushrooms(mushrooms)} //delete line?
@@ -18,6 +18,8 @@ const navAdd = () => {
     window.location.href='./addMushroom.html'
 } //changes to add mushroom page through nav bar
 
+
+//const getAllMushrooms = () => axios.get(addPage).then()
 const viewMushrooms = () => {
     window.location.href='./viewMushrooms.html'
     displayMushrooms();
@@ -92,7 +94,7 @@ const createMushroomCard = (mushroom) => {
         <p class="mushroom-name">${mushroom.mushroom_name}</p>
         <p class="mushroom-location">${mushroom.location}</p>
         <p class="mushroom-date">${mushroom.date}</p>
-        <button id="delete-button" onclick="deletemushroom(${mushroom.id})">delete</button>
+        <button id="delete-button" onclick="deleteMushroom(${mushroom.mushroom_id})">delete</button>
         `
         mushroomContainer.appendChild(mushroomCard)
     }
@@ -100,8 +102,8 @@ const createMushroomCard = (mushroom) => {
         //addButton.addEventListener('submit', addMushroom) //when add mushroom button pressed it invokes addMushroom function
         viewButton.addEventListener('click', viewMushrooms) //footer button changes webpage
         navAddButton.addEventListener('click', navAdd) //footer button changes webpage
-        //deleteButton.addEventListener('click', deleteMushroom) //delete specific mushroom
-
+        displayMushrooms();
         
-
-displayMushrooms();
+        //document.getElementById('delete-button').addEventListener('click', deleteMushroom) //delete specific mushroom
+        
+        

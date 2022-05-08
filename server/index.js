@@ -12,7 +12,8 @@ app.get('/', (req, res) => {res.sendFile(path.join(__dirname + '/public/index.ht
 
 app.use(express.static('../public'))
 app.use('/styles.css', express.static(__dirname + '/public/styles.css'))
-app.use('/index.js', express.static(__dirname + '/public/index.js'))
+app.use('/addMushroom.js', express.static(__dirname + '/public/addMushroom.js'))
+app.use('/viewMushroom.js', express.static(__dirname + '/public/viewMushroom.js'))
 // app.use('/deepai.min.js', express.static(__dirname + '/public/deepai.min.js'))
 
 const {
@@ -21,10 +22,10 @@ const {
   getMushroom
 } = require('./controller')
 
-app.post("/api/public/addMushroom", addMushroom)
-app.delete("/api/public/addMushroom/:id", deleteMushroom)
-app.get("/api/public/addMushroom", getMushroom)
 
+app.post("/api/public/addMushroom", addMushroom)
+app.delete("/api/public/viewMushrooms/:id", deleteMushroom)
+app.get("/api/public/addMushroom", getMushroom)
 
 const port = process.env.PORT || 5503
 
